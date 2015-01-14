@@ -1,0 +1,17 @@
+{
+  "name": "recent-file",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "dependencies": {
+    "blanket": "1.x.x",
+    "mocha": "2.x.x",
+    "chai": "1.x.x",
+    "sinon": "1.12.x"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "src"
+    }
+  }
+}
