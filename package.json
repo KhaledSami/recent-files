@@ -1,8 +1,12 @@
 {
+  "repository": {
+        "type": "git",
+        "url": "https://github.com/KhaledSami/recent-files.git"
+  },
   "name": "recent-file",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Khaled Sami <k.sami.mohammed@gmail.com>",
   "dependencies": {
     "blanket": "1.x.x",
     "mocha": "2.x.x",
@@ -13,5 +17,8 @@
     "blanket": {
       "pattern": "src"
     }
+  },
+  "scripts": {
+    "test": "make test"
   }
 }
