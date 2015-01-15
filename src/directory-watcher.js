@@ -3,11 +3,22 @@ var fs = require('fs');
 var directoryWatcher = {
     startListen: function(directoryPath) {
         if (fs.existsSync(directoryPath)) {
-            var fsWatcher = fs.watch(directoryPath);
+            return fs.watch(directoryPath);
         }
     },
-    stopListen: function(directoryPath) {
-        fs.unwatchFile(directoryPath);
+    stopListen: function(fsWatcher) {
+        fsWatcher.close();
+    },
+    recordChanges: function(fsWatcher, recentFilesHandler, callback) {
+        fsWatcher.on('change', function(event, filename) {
+            if (filename) {
+                recentFilesHandler.push(filename);
+                callback();
+
+            } else {
+                throw new Error('filename not provided');
+            }
+        });
     }
 };
 
