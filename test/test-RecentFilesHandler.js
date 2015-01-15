@@ -55,5 +55,5 @@ suite('Recent Files', function() {
         var formattedArray = recentFilesHandler.printFiles();
         assert.deepEqual(formattedArray, ["2015-01-01 09:20 - file3.txt", "2015-01-01 12:20 - file2.txt", "2015-01-04 14:00 - file1.txt"]);
     });
-
+    
 });

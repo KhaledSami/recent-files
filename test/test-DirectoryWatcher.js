@@ -43,7 +43,7 @@ suite('Directory Watcher', function() {
         fs.unwatchFile.restore();
         done();
     });
-
+    
 
     teardown(function() {
         fs.unlinkSync(".test_files/a");
