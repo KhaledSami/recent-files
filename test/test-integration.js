@@ -18,8 +18,9 @@ suite('Integration between DirectoryWatcher and RecentFilesHandler', function() 
             fs.writeFileSync(".testFiles/b", "");
         }
     });
-    test('file Watcher will record changes on watched Directory', function(done) {
 
+    test('file Watcher will record changes on watched Directory', function(done) {
+        this.timeout(4000);
         var recentFilesHandler = new RecentFilesHandler(3);
 
         var watcher = directoryWatcher.startListen('.testFiles', recentFilesHandler);
@@ -36,7 +37,7 @@ suite('Integration between DirectoryWatcher and RecentFilesHandler', function() 
         });
 
     });
-    
+
     teardown(function() {
         fs.unlinkSync(".testFiles/a");
         fs.unlinkSync('.testFiles/b');
