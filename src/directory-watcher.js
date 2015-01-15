@@ -14,7 +14,6 @@ var directoryWatcher = {
             if (filename) {
                 recentFilesHandler.push(filename);
                 callback();
-
             } else {
                 throw new Error('filename not provided');
             }
