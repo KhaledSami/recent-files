@@ -24,8 +24,18 @@ suite('Directory Watcher', function() {
         var fsSpy = sinon.spy(fs, "watch");
         directoryWatcher.startListen('.test_files');
         assert(fsSpy.called);
+        fs.watch.restore();
         done();
     });
+
+    test('file Watcher won\'t listen to a non existed Directory or file', function(done) {
+        var fsSpy = sinon.spy(fs, "watch");
+        directoryWatcher.startListen('.test_files1');
+        assert.equal(0, fsSpy.callCount);
+        fs.watch.restore();
+        done();
+    });
+
 
     teardown(function() {
         fs.unlinkSync(".test_files/a");
