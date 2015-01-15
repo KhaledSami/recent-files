@@ -36,6 +36,14 @@ suite('Directory Watcher', function() {
         done();
     });
 
+    test('file Watcher will stop listen to a Directory', function(done) {
+        var fsSpy = sinon.spy(fs, "unwatchFile");
+        directoryWatcher.stopListen('.test_files');
+        assert(fsSpy.called);
+        fs.unwatchFile.restore();
+        done();
+    });
+
 
     teardown(function() {
         fs.unlinkSync(".test_files/a");

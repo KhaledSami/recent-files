@@ -5,6 +5,9 @@ var directoryWatcher = {
         if (fs.existsSync(directoryPath)) {
             var fsWatcher = fs.watch(directoryPath);
         }
+    },
+    stopListen: function(directoryPath) {
+        fs.unwatchFile(directoryPath);
     }
 };
 
