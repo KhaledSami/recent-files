@@ -8,24 +8,17 @@ var fs = require('fs');
 var directoryWatcher = require('../src/directory-watcher.js').directoryWatcher;
 var RecentFilesHandler = require('../src/recent-files.js').RecentFilesHandler;
 
-
 suite('Integration between DirectoryWatcher and RecentFilesHandler', function() {
-
-    setup(function() {
-        if (!fs.existsSync('.testFiles')) {
-            fs.mkdirSync(".testFiles");
-            fs.writeFileSync(".testFiles/a", "abc");
-            fs.writeFileSync(".testFiles/b", "");
-        }
-    });
-
     test('file Watcher will record changes on watched Directory', function(done) {
-        this.timeout(4000);
+
         var recentFilesHandler = new RecentFilesHandler(3);
+
+        fs.mkdirSync(".testFiles");
 
         var watcher = directoryWatcher.startListen('.testFiles', recentFilesHandler);
 
-        fs.appendFileSync(".testFiles/b", 'abc');
+        fs.writeFileSync(".testFiles/a", "abc");
+        fs.writeFileSync(".testFiles/b", "");
         fs.writeFileSync(".testFiles/c", "");
 
         directoryWatcher.recordChanges(watcher, recentFilesHandler, function() {
@@ -35,7 +28,6 @@ suite('Integration between DirectoryWatcher and RecentFilesHandler', function() 
                 done();
             }
         });
-
     });
 
     teardown(function() {
