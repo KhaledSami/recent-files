@@ -1,6 +1,6 @@
 var RecentFilesHandler = function(maxLimit) {
     this.fileList = [];
-    this.maxLimit = maxLimit;
+    this.maxLimit = maxLimit || 6;
     this.dateFileMap = new Object();
 }
 
